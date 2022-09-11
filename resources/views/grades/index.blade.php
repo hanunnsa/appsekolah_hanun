@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grade View Index</title>
+    <!-- by Hanun Shabrina XI IPA U5 -->
     <!-- Css only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   </head>
 
   <body>
     <div class="container">
-    <a href="grade/create" class="btn btn-primary">Tambah Kelas</a> 
-    <table class="table table bordered table-striped">
     <h1>Index View Grade</h1>
-    <table class="table table-bordered table-stripped">
+    <a href="grade/create" class="btn btn-primary">Tambah Kelas</a>
+    <table class="table table bordered table-striped">
         <thead>
             <tr>
             <th scope="col">No</th>
@@ -28,7 +28,14 @@
                 <td>{{ ++$no }}</td>
                 <td>{{ $item->grades }}</td>
                 <td>{{ $item->amount }}</td> 
-                <td></td>
+                <td>
+                  <form action="{{ route('grade.destroy', $item->id)}}" onsubmit="return confirm('Apakah Anda Yakin?')" method="POST">
+                    <a class="btn btn-primary" href="{{ route('grade.edit', $item->id) }}">Edit</a>
+                    @csrf 
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

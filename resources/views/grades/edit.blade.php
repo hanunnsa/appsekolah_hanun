@@ -11,28 +11,19 @@
 
   <body>
     <div class="container">
-      <h1>Tambah Data Kelas</h1>
-      @if ($errors->any())
-      <div class="alert alert-danger">
-        <strong>ERROR!</strong> Field ini wajib diisi.<br><br>
-        <ul>
-          @foreach ($errors->all() as $error) 
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-      @endif
+      <h1>Edit Data Kelas</h1>
     <div>
-        <form action="{{ route('grade.store') }}" method="post">
+        <form action="{{ route('grade.update', $grade->id) }}" method="post">
             @csrf
+            @method('PUT')
             <div class="mb-2">
-                <input type="text" name="grade" class="form-control" placeholder="Nama Kelas">
+                <input type="text" name="grade" class="form-control" value="{{ $grade->grade}}" placeholder="Nama Kelas">
             </div>
             <div class="mb-2">
-                <input type="number" name="amount" class="form-control" placeholder="Jumlah Siswa">
+                <input type="number" name="amount" class="form-control" value="{{ $grade->amount}}" placeholder="Jumlah Siswa">
             </div>
             <div class="mb-2">
-            <input type="reset" class="btn btn-secondary"> &nbsp; <input type="submit" value="Simpan" class="btn btn-primary">
+            <input type="reset" class="btn btn-secondary"> &nbsp; <input type="submit" value="Update" class="btn btn-primary">
         </div>
         </form>
     </div>

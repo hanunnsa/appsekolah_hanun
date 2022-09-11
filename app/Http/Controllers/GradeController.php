@@ -21,7 +21,7 @@ class GradeController extends Controller
     public function store (Request $request)
     {
         $request->validate([
-            'grade' => 'required',
+            'grades' => 'required',
             'amount' => 'required',
         ]);
 
@@ -29,4 +29,16 @@ class GradeController extends Controller
 
         return redirect()->route('grade.index')->with('success', 'Berhasil menambahkan.');
     }
+
+    public function edit(Grade $grade)
+    {
+   return view('grades.edit', compact('grade'));
+    }
+
+    public function destroy(Grade $grade)
+    {
+        $grade->delete();
+       return redirect()->route('grade.index')->with('success','Kelas Berhasil Dihapus');
+    }
+
 }
